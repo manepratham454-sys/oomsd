@@ -261,5 +261,12 @@ def seed_database():
     finally:
         db.close()
 
+    # Also seed the full network of additional stations
+    try:
+        from add_all_stations import add_stations
+        add_stations()
+    except Exception as e:
+        print(f"Note: Extended station seeding skipped: {e}")
+
 if __name__ == "__main__":
     seed_database()
