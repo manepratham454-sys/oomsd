@@ -1,0 +1,36 @@
+services:
+  # FastAPI Backend Web Service
+  - type: web
+    name: evcsms-backend
+    runtime: python
+    rootDir: evcsms/backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///./evcsms.db
+
+  # Vite React Frontend Static Site
+  - type: web
+    name: evcsms-frontend
+    runtime: static
+    rootDir: evcsms/frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    plan: free
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: evcsms-backend
+          property: host
+          transform: "https://${host}/api/v1"

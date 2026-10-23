@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-950 text-slate-100 min-h-screen antialiased;
+  }
+}
+
+/* Custom Glassmorphism & UI tokens */
+.glass-panel {
+  background: rgba(15, 27, 59, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(21, 36, 77, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-nav {
+  background: rgba(11, 19, 41, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom animations for energy telemetry */
+@keyframes energy-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.8);
+  }
+}
+
+.animate-energy-pulse {
+  animation: energy-pulse 2s infinite ease-in-out;
+}
+
+/* Tesla Cruising & Cyber Road Animations */
+@keyframes teslaDrive {
+  0% {
+    transform: translateX(-400px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 500px));
+  }
+}
+
+.animate-tesla-drive {
+  animation: teslaDrive 16s linear infinite;
+}
+
+@keyframes teslaSuspension {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-2px) rotate(-0.4deg);
+  }
+  70% {
+    transform: translateY(1.5px) rotate(0.3deg);
+  }
+}
+
+.animate-tesla-suspension {
+  animation: teslaSuspension 1.8s ease-in-out infinite;
+}
+
+@keyframes spinWheel {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-wheel {
+  transform-origin: center;
+  animation: spinWheel 0.4s linear infinite;
+}
+
+@keyframes roadTravel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-road-travel {
+  animation: roadTravel 2.5s linear infinite;
+}
+
+.animate-road-travel-fast {
+  animation: roadTravel 1.2s linear infinite;
+}
+
+/* Leaflet dark theme tweaks */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 1.5rem;
+  background-color: #090f1d !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 4px !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background: #ffffff !important;
+}
+
+/* Modern subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1329;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3266;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
